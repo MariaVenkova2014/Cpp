@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // правилният брой фигури от всеки тип
+    int correct[6] = {1, 1, 2, 2, 2, 8};
+
+    int white[6], black[6];
+
+    // прочитаме белите фигури
+    for (int i = 0; i < 6; i++) {
+        cin >> white[i];
+    }
+
+    // прочитаме черните фигури
+    for (int i = 0; i < 6; i++) {
+        cin >> black[i];
+    }
+
+    // изчисляваме и извеждаме разликите за белите
+    for (int i = 0; i < 6; i++) {
+        cout << correct[i] - white[i] << " ";
+    }
+    cout << "\n";
+
+    // изчисляваме и извеждаме разликите за черните
+    for (int i = 0; i < 6; i++) {
+        cout << correct[i] - black[i] << " ";
+    }
+    cout << "\n";
+
+    return 0;
+}
