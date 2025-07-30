@@ -1,0 +1,148 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Проверка дали няколко кубчета могат да се сложат заедно в една кутия с размер E
+bool can_fit_in_box(const vector<int>& cubes, int E) {
+    int n = cubes.size();
+    if (n == 0) return true;
+    if (n == 1) return cubes[0] <= E;
+    if (n == 2) {
+        // Поставяме кубчетата едно до друго по някоя ос
+        // Проверяваме всички оси (x, y, z)
+        // Понеже са кубове, размерите са еднакви по всички оси, затова:
+        // Просто сумата от страните трябва да е <= E по една ос
+        return (cubes[0] + cubes[1] <= E);
+    }
+    if (n == 3) {
+        // Можем да опитаме да подредим кубчетата по 3D кутия с размер E
+        // Възможни разположения:
+        // 1) Всички на една линия: sum ≤ E
+        int sum = cubes[0] + cubes[1] + cubes[2];
+        if (sum <= E) return true;
+
+        // 2) Два куба на една линия по една ос, третия по друга ос:
+        // Опитваме всички подредби:
+        // (cubes[0]+cubes[1] ≤ E) и (cubes[2] ≤ E)
+        if (cubes[0] + cubes[1] <= E && cubes[2] <= E) return true;
+        if (cubes[0] + cubes[2] <= E && cubes[1] <= E) return true;
+        if (cubes[1] + cubes[2] <= E && cubes[0] <= E) return true;
+
+        // 3) Кубчетата заемат един слой в 3D куб: примерно подредени 2D с 2 и 1 по другата ос
+        // Но за кубчета е достатъчно да проверим горното
+
+        return false;
+    }
+    if (n == 4) {
+        // Опитваме няколко разположения
+
+        // 1) Всички на една линия
+        int sum = 0;
+        for (int x : cubes) sum += x;
+        if (sum <= E) return true;
+
+        // 2) Две двойки на различни оси:
+        // Нека ги разделим на две двойки: (a,b) и (c,d)
+        // Ако max(a,b) + max(c,d) ≤ E и sum по съответната ос ≤ E
+        // Но е сложно, за 4 куба ще пробваме всички подредби
+
+        // За простота опитваме всички начини за подреждане като:
+
+        // Сортираме кубчетата
+        vector<int> sorted = cubes;
+        sort(sorted.begin(), sorted.end());
+
+        // Опитваме подредба: (x0 + x1) ≤ E и (x2 + x3) ≤ E
+        if ((sorted[0] + sorted[1] <= E) && (sorted[2] + sorted[3] <= E)) return true;
+
+        // Опитваме подредба: (x0 + x2) ≤ E и (x1 + x3) ≤ E
+        if ((sorted[0] + sorted[2] <= E) && (sorted[1] + sorted[3] <= E)) return true;
+
+        // Опитваме подредба: (x0 + x3) ≤ E и (x1 + x2) <= E
+        if ((sorted[0] + sorted[3] <= E) && (sorted[1] + sorted[2] <= E)) return true;
+
+        // Ако не сме намерили, връщаме false
+        return false;
+    }
+
+    return false;
+}
+
+// Рекурсивна функция за намиране минимален брой кутии
+int min_boxes(const vector<int>& devices, int E, int index, vector<int>& boxes) {
+    if (index == (int)devices.size()) {
+        // Всички уреди са поставени
+        return (int)boxes.size();
+    }
+
+    int res = 5; // Максимум 4 кутии (за 4 уреда)
+
+    // Опитваме да сложим devices[index] във всяка от вече съществуващите кутии
+    for (int i = 0; i < (int)boxes.size(); i++) {
+        vector<int> current_group;
+
+        // За всеки уред, който е вече в кутия i, събираме размерите (тук е опростено - всеки уред е отделно, затова използваме само размера на devices, които са в кутия i)
+        // Но за простота ще ползваме списък с размери за всяка кутия
+
+        // За това ще променим структурата - вместо boxes да е вектор от размери, ще е вектор от вектори с размерите на уредите в кутия
+
+        // Това е по-лесно за контролиране.
+
+        // Тук кодът трябва да се промени, ще направя по-добър код.
+
+    }
+
+    return res;
+}
+
+// Ново решение с backtracking с вектори
+
+int minimal_boxes;
+int E_global;
+vector<int> devices_global;
+
+void backtrack(int idx, vector<vector<int>>& boxes) {
+    if (idx == (int)devices_global.size()) {
+        minimal_boxes = min(minimal_boxes, (int)boxes.size());
+        return;
+    }
+
+    for (int i = 0; i < (int)boxes.size(); i++) {
+        boxes[i].push_back(devices_global[idx]);
+        if (can_fit_in_box(boxes[i], E_global)) {
+            backtrack(idx + 1, boxes);
+        }
+        boxes[i].pop_back();
+    }
+
+    // Опитваме да сложим в нова кутия
+    boxes.push_back({ devices_global[idx] });
+    if (can_fit_in_box(boxes.back(), E_global)) {
+        backtrack(idx + 1, boxes);
+    }
+    boxes.pop_back();
+}
+
+int main() {
+    int A, B, C, D, E;
+    cin >> A >> B >> C >> D >> E;
+
+    devices_global = { A, B, C, D };
+    E_global = E;
+
+    // Ако някой уред е по-голям от кутията, не може да се опакова
+    if (*max_element(devices_global.begin(), devices_global.end()) > E) {
+        cout << 4 << "\n";
+        return 0;
+    }
+
+    minimal_boxes = 4; // максимум 4 кутии
+    vector<vector<int>> boxes;
+
+    backtrack(0, boxes);
+
+    cout << minimal_boxes << "\n";
+
+    return 0;
+}
