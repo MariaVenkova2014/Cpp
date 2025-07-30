@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n1, n2, k;
+    char c1, c2;
+    
+    // Read first part: number of left barrels and their type
+    cin >> n1 >> c1;
+    
+    // Read second part: number of right barrels and their type
+    cin >> n2 >> c2;
+    
+    // Read how many barrels Kaloyan will take
+    cin >> k;
+
+    // We need to count how many gasoline barrels (A) are in the first k
+    int gasolineCount = 0;
+
+    // Case 1: if gasoline is on the left (c1 is 'A')
+    if (c1 == 'A') {
+        // Take minimum of k and n1 (because n1 are gasoline barrels)
+        gasolineCount = min(k, n1);
+    }
+    // Case 2: if gasoline is on the right (c2 is 'A')
+    else {
+        // Kaloyan will first take n1 barrels from c1 (which is not gasoline)
+        // So only k - n1 barrels are from the right (gasoline)
+        if (k > n1) {
+            gasolineCount = k - n1;
+        }
+    }
+
+    cout << gasolineCount << endl;
+
+    return 0;
+}
