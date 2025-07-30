@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int numbers[1000]; // max n = 999
+
+    for (int i = 0; i < n; i++) {
+        cin >> numbers[i];
+    }
+
+    int i = 0;
+
+    // Step 1: count how many odd numbers are at the start
+    while (i < n && numbers[i] % 2 == 1) {
+        i++;
+    }
+
+    int oddCount = i;     // How many odd numbers not crossed
+    int evenCount = n - i; // The rest are even numbers not crossed
+
+    int maxOdd = 0;
+    for (int j = 0; j < oddCount; j++) {
+        if (numbers[j] > maxOdd) {
+            maxOdd = numbers[j];
+        }
+    }
+
+    int maxEven = 0;
+    for (int j = i; j < n; j++) {
+        if (numbers[j] > maxEven) {
+            maxEven = numbers[j];
+        }
+    }
+
+    // Total odd numbers from 1 to maxOdd: 1, 3, 5, ..., maxOdd
+    int totalOdd = (maxOdd + 1) / 2;
+    // Total even numbers from 2 to maxEven: 2, 4, 6, ..., maxEven
+    int totalEven = maxEven / 2;
+
+    int crossedOdd = totalOdd - oddCount;
+    int crossedEven = totalEven - evenCount;
+
+    cout << crossedOdd << " " << crossedEven << endl;
+
+    return 0;
+}
