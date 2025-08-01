@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	char letter;
+	int hight;
+
+	int maxHight = 100;
+	char maxHightLetter = 'A';
+
+	for (int i = 0; i < 5; i++) {
+		cin >> letter >> hight;
+
+		if (hight >= maxHight) {
+			maxHight = hight;
+			maxHightLetter = letter;
+		}
+	}
+
+	cout << maxHightLetter << endl;
+	return 0;
+}
