@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int mushrooms[10];
+    for (int i = 0; i < 10; i++) {
+        cin >> mushrooms[i];
+    }
+
+    int closest_sum = -1;     // best sum found so far
+    int smallest_diff = 101;  // smallest difference from 100 found so far
+
+    for (int start = 0; start < 10; start++) {
+        int current_sum = 0;
+        for (int length = 1; length <= 10 && start + length <= 10; length++) {
+            current_sum += mushrooms[start + length - 1];
+            int current_diff = abs(100 - current_sum);
+
+            // If this sum is closer to 100, update best
+            if (current_diff < smallest_diff) {
+                smallest_diff = current_diff;
+                closest_sum = current_sum;
+            }
+            // If same difference but bigger sum, update best too
+            else if (current_diff == smallest_diff && current_sum > closest_sum) {
+                closest_sum = current_sum;
+            }
+        }
+    }
+
+    cout << closest_sum << "\n";
+
+    return 0;
+}
