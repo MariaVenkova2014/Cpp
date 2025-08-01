@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long S, P, R;
+    cin >> S >> P >> R;
+
+    // Ако юнакът стига изворa още първия ден
+    if (P >= S) {
+        int day_of_week = (3 + 0) % 7;  // ден 1 е ден 3, прибавяме 0
+        cout << 1 << " " << day_of_week << "\n";
+        return 0;
+    }
+
+    // Разстояние след първия ден (след първия напред)
+    long long remaining = S - P;
+
+    // Всеки ден напредва net_distance = P - R метра
+    long long net_distance = P - R;
+
+    // Брой дни след първия, за да достигне останалото разстояние
+    long long days_after_first = (remaining + net_distance - 1) / net_distance;  // закръгляне нагоре
+
+    long long total_days = 1 + days_after_first;
+
+    int day_of_week = (3 + (total_days - 1)) % 7;
+
+    cout << total_days - 1 << " " << day_of_week << "\n";
+
+    return 0;
+}
