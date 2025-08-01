@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int A, B, C, D, N;
+    cin >> A >> B >> C >> D >> N;
+
+    // Преобразуваме времето в минути
+    int start = A * 60 + B;
+    int end = C * 60 + D;
+
+    int duration = end - start;
+    int remaining = duration - N;
+
+    // Ако не може да се раздели на две равни части,
+    // първата ще е по-дълга с 1 минута (закръгляме надолу)
+    int firstPart = (remaining + 1) / 2;
+
+    int breakStart = start + firstPart;
+
+    // Преобразуваме обратно към час и минути
+    int breakHour = breakStart / 60;
+    int breakMinute = breakStart % 60;
+
+    cout << breakHour << " " << breakMinute << endl;
+    return 0;
+}
