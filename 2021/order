@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    int min_wrong = 1001;
+    int max_wrong = 0;
+    bool found = false;
+
+    for (int i = 1; i <= N; i++) {
+        int x;
+        cin >> x;
+
+        if (x != i) {
+            found = true;
+            if (x < min_wrong) min_wrong = x;
+            if (x > max_wrong) max_wrong = x;
+        }
+    }
+
+    if (!found) {
+        cout << "0 0\n";
+    } else {
+        cout << min_wrong << " " << max_wrong << "\n";
+    }
+
+    return 0;
+}
