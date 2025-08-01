@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N, K, Y, A, B;
+    cin >> N >> K >> Y >> A >> B;
+    /* N = total kilometers to travel,
+    K = how many kilometers the car can travel on a full tank,
+    Y = the number to check divisibility for promotions,
+    A = standard price per km,
+    B = promotional price per km (always less than A).*/ 
+
+    int totalCost = 0;
+    // This is where we will add up all the money Pesho pays. We start at 0.
+
+    for (int station = 0; station <= N; station += K) { // Pesho stops at kilometers 0, then K, then 2K, then 3K, and so on until he reaches the end N.
+        int fuelNeeded;
+
+        if (station + K <= N) {
+            fuelNeeded = K;
+        } else {
+            fuelNeeded = N - station;
+        }
+
+        int temp = station, digitSum = 0;
+        while (temp > 0) {
+            digitSum += temp % 10;
+            temp /= 10;
+        }
+
+        int pricePerKm = (digitSum % Y == 0) ? B : A;
+
+        totalCost += fuelNeeded * pricePerKm;
+    }
+
+    cout << totalCost << endl;
+
+    return 0;
+}
