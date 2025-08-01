@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int floors[4];   // етажите на 4 участника
+    int apartments = 0;  // брой на участници в апартаменти
+
+    for (int i = 0; i < 4; i++) {
+        string key;
+        cin >> key;
+
+        // Взимаме първите две цифри (етаж)
+        string floor_str = key.substr(0, 2);
+        int floor = stoi(floor_str);  // конвертираме в число
+        floors[i] = floor;
+
+        // Последният символ е тип на стаята
+        char room_type = key.back();
+
+        if (room_type == 'A') {
+            apartments++;
+        }
+    }
+
+    // Извеждаме резултата
+    for (int i = 0; i < 4; i++) {
+        cout << floors[i] << " ";
+    }
+    cout << apartments << endl;
+
+    return 0;
+}
