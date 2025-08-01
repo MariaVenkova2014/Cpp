@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string top, mid, bot;
+    cin >> top >> mid >> bot;
+
+    if (top == "b" && mid == "b" && bot == "g") {
+        // steady green: next state from example: black black GREEN
+        cout << "black\nblack\nGREEN\n";
+    }
+    else if (top == "b" && mid == "Y" && bot == "b") {
+        // blinking yellow: black YELLOW black
+        cout << "black\nYELLOW\nblack\n";
+    }
+    else if (top == "b" && mid == "y" && bot == "b") {
+        // steady yellow: next is red black black
+        cout << "red\nblack\nblack\n";
+    }
+    else if (top == "r" && mid == "b" && bot == "b") {
+        // red steady: next red yellow black
+        cout << "red\nyellow\nblack\n";
+    }
+    else if (top == "r" && mid == "y" && bot == "b") {
+        // red + yellow: next black black green
+        cout << "black\nblack\ngreen\n";
+    }
+    else if (top == "b" && mid == "Y" && bot == "b") {
+        // blinking yellow mode stays same
+        cout << "black\nYELLOW\nblack\n";
+    }
+    else {
+        cout << "error\n";
+    }
+
+    return 0;
+}
