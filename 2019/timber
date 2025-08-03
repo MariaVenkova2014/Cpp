@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int X, N;
+    cin >> X >> N;
+
+    int logs = N - X; // намери броя на трупите
+    int A = logs / 2; // първата каруца
+    int B = logs - A; // втората каруца (останалите)
+
+    cout << logs << endl;
+    cout << A << " " << B << endl;
+
+    return 0;
+}
