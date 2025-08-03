@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int best_index = 1;     // номер на най-добрата пътека
+    double best_d;          // разстояние на най-добрата пътека
+    int best_l;             // наклон на най-добрата пътека
+
+    for (int i = 1; i <= n; i++) {
+        double d;
+        int l;
+        cin >> d >> l;
+
+        if (i == 1) {
+            // първата пътека винаги е най-добрата до момента
+            best_d = d;
+            best_l = l;
+        } else {
+            if (l < best_l || (l == best_l && d < best_d)) {
+                best_l = l;
+                best_d = d;
+                best_index = i;
+            }
+        }
+    }
+
+    cout << best_index << endl;
+    cout << best_l << endl;
+
+    return 0;
+}
