@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, t, f, x;
+	cin >> n >> t >> f >> x;
+
+	int remainingTasks = n - f;
+	int availableMinutes = (t - 1) * 60;
+	int neededMinutes = remainingTasks * x;
+
+	if (neededMinutes < availableMinutes) {
+		cout << "YES" << endl;
+		cout << availableMinutes - neededMinutes << endl;
+	} else if (neededMinutes == availableMinutes) {
+		cout << "EXACT!" << endl;
+	} else {
+		cout << "NO" << endl;
+		cout << neededMinutes - availableMinutes << endl;
+		cout << (remainingTasks - availableMinutes / x) << endl;
+	}
+
+	return 0;
+}
