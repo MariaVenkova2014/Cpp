@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+
+	for (int triples = n / 3; triples >= 0; triples--) {
+		int remaining = n - triples * 3;
+
+		if (remaining % 2 == 0) {
+			int doubles = remaining / 2;
+			cout << doubles << " " << triples << endl;
+			break;
+		}
+	}
+
+	return 0;
+}
