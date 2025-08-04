@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b, c, d;
+	cin >> a >> b >> c >> d;
+
+	// Броим колко пъти всяка дължина се среща
+	if ((a == b && c == d && a == c) ||  // Всички равни
+	    (a == b && c == d && a != c) ||
+	    (a == c && b == d && a != b) ||
+	    (a == d && b == c && a != b)) {
+		
+		// Намери двете различни дължини
+		int x, y;
+		if (a == b && c == d) { x = a; y = c; }
+		else if (a == c && b == d) { x = a; y = b; }
+		else if (a == d && b == c) { x = a; y = b; }
+		else { x = a; y = a; } // Всички равни
+		
+		cout << "YES" << endl;
+		cout << x * y << endl; // Площ
+	} else {
+		cout << "NO" << endl;
+		cout << a + b + c + d << endl; // Обиколка
+	}
+
+	return 0;
+}
