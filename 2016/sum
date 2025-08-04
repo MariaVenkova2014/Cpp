@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string input;
+    cin >> input;
+
+    // Парсваме израза A+B
+    // Формат: трицифрено число + трицифрено число без интервали
+    int plus_pos = input.find('+');
+    int A = stoi(input.substr(0, plus_pos));
+    int B = stoi(input.substr(plus_pos + 1));
+
+    int true_sum = A + B;
+
+    // Извличаме цифрите на A и B поразрядно
+    int A_units = A % 10;
+    int A_tens = (A / 10) % 10;
+    int A_hundreds = (A / 100) % 10;
+
+    int B_units = B % 10;
+    int B_tens = (B / 10) % 10;
+    int B_hundreds = (B / 100) % 10;
+
+    // Сумата по правилата на Гошко (без пренос)
+    int g_units = (A_units + B_units) % 10;           // взимаме само единиците на сбора, но може и просто да не слагаме %
+    int g_tens = (A_tens + B_tens) % 10;
+    int g_hundreds = (A_hundreds + B_hundreds);       // тук може да е >= 10, но не добавяме пренос, а го оставяме
+
+    // Сглобяваме резултата на Гошко:
+    int gosho_sum = g_hundreds * 100 + g_tens * 10 + g_units;
+
+    cout << gosho_sum << "\n" << true_sum << "\n";
+
+    return 0;
+}
