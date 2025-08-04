@@ -1,0 +1,55 @@
+#include <iostream> // for cin and cout
+using namespace std;
+
+int main() {
+    int n1, n2, k;   // n1 = number of first group marbles
+                     // n2 = number of second group marbles
+                     // k = how many marbles we take from the start
+    char c1, c2;     // c1 = type of first group (A or B)
+                     // c2 = type of second group (A or B)
+
+    // Read the first line: number and type of the first group
+    cin >> n1 >> c1;
+
+    // Read the second line: number and type of the second group
+    cin >> n2 >> c2;
+
+    // Read how many marbles we take from the beginning
+    cin >> k;
+
+    int result = 0; // This will store how many A marbles we took
+
+    // Case 1: First group is of type A
+    if (c1 == 'A') {
+        if (k <= n1) {
+            // We take only A marbles
+            result = k;
+        } else {
+            // We take all A marbles (n1), and some B
+            result = n1;
+        }
+    }
+    // Case 2: First group is of type B
+    else {
+        if (k <= n1) {
+            // We don't reach the A marbles at all
+            result = 0;
+        } else {
+            // We pass all B marbles and take some A
+            int taken_from_A = k - n1;
+
+            if (taken_from_A <= n2) {
+                // We take part of the A marbles
+                result = taken_from_A;
+            } else {
+                // We try to take more A than exist, so we take all A
+                result = n2;
+            }
+        }
+    }
+
+    // Print the result
+    cout << result << endl;
+
+    return 0;
+}
