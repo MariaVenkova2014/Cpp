@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b;
+	cin >> a >> b;
+
+	if (a == 9) { // If the number is 9 we make it 6
+		a = 6;
+	} else if (a == 6) { // If the number is 6 we make it 9
+		a = 9;
+	}
+
+	if (b == 9) { // If the number is 9 we make it 6
+		b = 6;
+	} else if (b == 6) { // If the number is 6 we make it 9
+		b = 9;
+	}
+
+	if (a > b) { // If a > b that means that a is going to be printed first
+		cout << a << b << endl;
+	} else { // b > a that meas that b is going to be printed first
+		cout << b << a << endl;
+
+	}
+}
