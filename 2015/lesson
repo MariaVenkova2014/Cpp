@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int lesson_per_week = 30; // 5 дни * 6 урока
+    int week, day;
+    string day_name;
+
+    if (n <= 240) {
+        week = (n - 1) / lesson_per_week + 1;
+    } else {
+        week = (n - 241) / lesson_per_week + 10;
+    }
+
+    int day_index = ((n - 1) / 6) % 5;
+
+    if (day_index == 0) day_name = "Monday";
+    else if (day_index == 1) day_name = "Tuesday";
+    else if (day_index == 2) day_name = "Wednesday";
+    else if (day_index == 3) day_name = "Thursday";
+    else if (day_index == 4) day_name = "Friday";
+
+    cout << "Week " << week << " " << day_name << endl;
+    return 0;
+}
