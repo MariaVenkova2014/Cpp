@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int troom, tcond;
+    char mode;
+    cin >> troom >> tcond;
+    cin >> mode;
+
+    int result = troom;
+
+    if (mode == 'f') {
+        // охлаждане: може да понижава температурата
+        // ако troom > tcond, климатикът охлажда до tcond
+        // иначе остава същата температура
+        if (troom > tcond)
+            result = tcond;
+    }
+    else if (mode == 'h') {
+        // затопляне: може да повишава температурата
+        // ако troom < tcond, климатикът затопля до tcond
+        // иначе остава същата температура
+        if (troom < tcond)
+            result = tcond;
+    }
+    else if (mode == 'a') {
+        // автоматичен режим - настройва температурата на tcond
+        result = tcond;
+    }
+    else if (mode == 'v') {
+        // вентилация - температурата не се променя
+        result = troom;
+    }
+
+    cout << result << "\n";
+
+    return 0;
+}
