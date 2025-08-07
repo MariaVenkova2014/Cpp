@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b, c, d, e, f;
+	cin >> a >> b >> c >> d >> e >> f;
+
+	int sum = 0;
+
+	if (a == b && b == c && c == d && d == e && e == f) {
+		sum = a + b + c + d + e + f;
+		cout << sum << endl;
+	} else {
+		int min = a;
+		if (b < min) min = b;
+		if (c < min) min = c;
+		if (d < min) min = d;
+		if (e < min) min = e;
+		if (f < min) min = f;
+
+		int max = a;
+		if (b > max) max = b;
+		if (c > max) max = c;
+		if (d > max) max = d;
+		if (e > max) max = e;
+		if (f > max) max = f;
+
+		sum = (a + b + c + d + e + f) - min - max;
+
+		cout << sum << endl;
+	}
+}
