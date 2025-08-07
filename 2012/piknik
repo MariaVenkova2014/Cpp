@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int k, l, ml; // number of classmates, literes of juice, mililiters of juice
+	cin >> k >> l >> ml;
+
+	int people = k; // including the user
+	int juicePerPerson = 2 * 200; // each person drinks 2 cups of 200ml
+	int totalJuiceNeeded = people * juicePerPerson; // total juice needed in ml
+
+	int totalJuiceInBottle = l * 1000 + ml;
+
+	int juiceBottlesNeeded = (totalJuiceNeeded + totalJuiceInBottle - 1) / totalJuiceInBottle;
+
+	cout << juiceBottlesNeeded << endl; // output the result
+
+}
