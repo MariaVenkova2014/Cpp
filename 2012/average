@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long m, n;
+    cin >> m >> n;
+
+    // Първото четно число >= m
+    if (m % 2 != 0) m++;
+
+    // Ако вече първото четно е по-голямо от n, няма четни числа в интервала
+    if (m > n) {
+        cout << 0 << "\n";
+        return 0;
+    }
+
+    // Последното четно число <= n
+    long long last_even = (n % 2 == 0) ? n : n - 1;
+
+    // Брой четни числа в интервала
+    long long count = ((last_even - m) / 2) + 1;
+
+    // Средноаритметичното на аритметична прогресия: (първи + последен) / 2
+    long long average = (m + last_even) / 2;
+
+    cout << average << "\n";
+
+    return 0;
+}
