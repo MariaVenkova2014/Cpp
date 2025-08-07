@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long N, M, K;
+    cin >> N >> M >> K;
+
+    if (N == 0 || M == 0) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    if (K < N) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    long long perRoll = K / N;
+    long long rolls = (M + perRoll - 1) / perRoll;
+
+    cout << rolls << endl;
+    return 0;
+}
