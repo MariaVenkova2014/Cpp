@@ -1,1 +1,19 @@
+#include <iostream>
+using namespace std;
 
+int main() {
+    int A;
+    cin >> A;
+
+    int a = A / 100;         // първа цифра
+    int b = (A / 10) % 10;   // втора цифра
+    int c = A % 10;          // трета цифра
+
+    // възможни произведения
+    int prod1 = a * (b * 10 + c); // между първата и останалите две
+    int prod2 = (a * 10 + b) * c; // между първите две и последната
+
+    // намираме най-голямото
+    if (prod1 > prod2) cout << prod1;
+    else cout << prod2;
+}
