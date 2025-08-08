@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	long long v, n; // water volume, number of fish
+	cin >> v >> n;
+
+	if (v / 3 < n) {
+		cout << "YES ";
+		cout << n - (v / 3) << endl;
+	} else {
+		cout << "NO" << endl;
+	}
+}
