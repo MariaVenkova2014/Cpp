@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	const int ONE_BOX_OF_PAINT = 16; // 1 box of paint covers 16 square meters
+
+	long long l, w, h; // length, width, height
+	cin >> l >> w >> h;
+
+	long long firstWall = (l * h) * 2;
+	long long secondWall = (w * h) * 2;
+
+	long long totalArea = firstWall + secondWall;
+
+	long long boxesNeeded = totalArea / ONE_BOX_OF_PAINT;	
+
+	if (totalArea % ONE_BOX_OF_PAINT != 0) {
+		boxesNeeded++; // ако има остатък, взимаме още една кутия
+	}
+
+
+	cout << boxesNeeded;
+}
