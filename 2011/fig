@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    if (!(cin >> n)) return 0;
+
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= i; ++j) {
+            char c;
+            if (i == n) c = '*';               // последен ред — всички звезди
+            else if (j == 1 || j == i) c = '*';// контурни звезди
+            else c = '.';                      // вътрешност — точки
+
+            cout << c;
+            if (j < i) cout << ' ';           // един интервал между знаците
+        }
+        cout << '\n';
+    }
+
+    return 0;
+}
