@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    bool allPrime = true;
+    int sum = 0;
+    int product = 1;
+
+    for (int i = 0; i < 4; i++) {
+        int digit = N % 10;
+        N /= 10;
+
+        // добавяме към сумата
+        sum += digit;
+
+        // умножаваме към произведението
+        product *= digit;
+
+        // проверка дали е проста цифра
+        if (digit != 2 && digit != 3 && digit != 5 && digit != 7) {
+            allPrime = false;
+        }
+    }
+
+    if (allPrime) cout << product;
+    else cout << sum;
+
+    return 0;
+}
