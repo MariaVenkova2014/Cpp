@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int X, Y, Z;
+    cin >> X >> Y >> Z;
+
+    // секунди от 8:00:00
+    long long totalSec = (X - 8) * 3600 + Y * 60 + Z;
+    if (totalSec < 0) totalSec += 24 * 3600; // ако е преди 8 сутринта, въртим към следващия ден
+
+    int cycle = 108;
+    int secInCycle = totalSec % cycle;
+
+    if (secInCycle < 60) cout << "premini";          // зелено
+    else if (secInCycle < 64) cout << "izchakai";    // жълто след зелено
+    else if (secInCycle < 104) cout << "spri";       // червено
+    else cout << "izchakai";                         // жълто след червено
+}
