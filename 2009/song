@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	const int KB_PER_SECOND = 16; // 16 KB per second for a song
+
+	long long n, m, k; // song minutes, song seconds, mb left
+	cin >> n >> m >> k;
+
+	long long MBToKB = k * 1024; // convert MB to KB
+	long long totalSeconds = n * 60 + m; // convert song time to total seconds
+	long long kbNeeded = totalSeconds * KB_PER_SECOND; // calculate total KB needed
+
+	if (kbNeeded <= MBToKB) {
+		cout << "YES" << endl; // enough KB available
+	} else {
+		cout << "NO" << endl; // not enough KB available
+		cout << kbNeeded - MBToKB << endl; // calculate how many more KB are needed
+	}
+}
